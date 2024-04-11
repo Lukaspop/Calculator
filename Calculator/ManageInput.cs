@@ -9,7 +9,6 @@ namespace Calculator
         {
             List<string> symbols = new List<string>();
             string currentItem = "";
-            bool insideFunction = false;
 
             foreach (char c in input)
             {
@@ -20,16 +19,10 @@ namespace Calculator
 
                 else if (c == 's' || c == 'i' || c == 'n' || c == '(' || c == ')')
                 {
-                    if (!string.IsNullOrEmpty(currentItem) && insideFunction)
-                    {
-                        symbols.Add(currentItem);
-                        currentItem = "";
-                    }
-
+                    
                     if (c == 's' || c == 'i' || c == 'n' )
                     {
                         currentItem += c;
-                        insideFunction = false;
                     }
                     
                     
