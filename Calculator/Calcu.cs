@@ -1,5 +1,4 @@
-﻿using Calculator.Operations;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +11,6 @@ namespace Calculator
 
         public void Calculate(List<string> symbols)
         {
-            new Plus();
-            new Minus();
-            new Multiply();
-            new Devide();
-            new Sinus();
 
             int selectedNumberOne;
             int selectedNumberTwo;
@@ -27,7 +21,8 @@ namespace Calculator
                 if (symbols.Contains("sin"))
                 {
                     selectedNumberOne = symbols.IndexOf("sin") + 1;
-                    symbols[selectedNumberOne] = Sinus.OperationSinus(symbols[selectedNumberOne]);
+
+                    symbols[selectedNumberOne] = new Sinus(symbols[selectedNumberOne]).Calculate().ToString();
                     symbols.RemoveAt((selectedNumberOne) - 1);
                 }
 
@@ -35,7 +30,8 @@ namespace Calculator
                 {
                     selectedNumberOne = symbols.IndexOf("*") - 1;
                     selectedNumberTwo = symbols.IndexOf("*") + 1;
-                    symbols[selectedNumberOne] = Multiply.OperationMultiply(symbols[selectedNumberOne], symbols[selectedNumberTwo]);
+
+                    symbols[selectedNumberOne] = new Multiply(symbols[selectedNumberOne], symbols[selectedNumberTwo]).Calculate().ToString();
                     symbols.RemoveAt((selectedNumberTwo) - 1);
                     symbols.RemoveAt((selectedNumberTwo) - 1);
                 }
@@ -44,7 +40,8 @@ namespace Calculator
                 {
                     selectedNumberOne = symbols.IndexOf("/") - 1;
                     selectedNumberTwo = symbols.IndexOf("/") + 1;
-                    symbols[selectedNumberOne] = Devide.OperationDevide(symbols[selectedNumberOne], symbols[selectedNumberTwo]);
+
+                    symbols[selectedNumberOne] = new Devide(symbols[selectedNumberOne], symbols[selectedNumberTwo]).Calculate().ToString();
                     symbols.RemoveAt((selectedNumberTwo) - 1);
                     symbols.RemoveAt((selectedNumberTwo) - 1);
                 }
@@ -53,8 +50,8 @@ namespace Calculator
                 {
                     selectedNumberOne = symbols.IndexOf("+") - 1;
                     selectedNumberTwo = symbols.IndexOf("+") + 1;
-                    symbols[selectedNumberOne] = Plus.OperationPlus(symbols[selectedNumberOne], symbols[selectedNumberTwo]);
 
+                    symbols[selectedNumberOne] = new Plus(symbols[selectedNumberOne], symbols[selectedNumberTwo]).Calculate().ToString();
                     symbols.RemoveAt((selectedNumberTwo) - 1);
                     symbols.RemoveAt((selectedNumberTwo) - 1);
 
@@ -64,10 +61,8 @@ namespace Calculator
                 {
                     selectedNumberOne = symbols.IndexOf("-") - 1;
                     selectedNumberTwo = symbols.IndexOf("-") + 1;
-                    Console.WriteLine("1" + symbols[selectedNumberOne]);
-                    Console.WriteLine("2" + symbols[selectedNumberTwo]);
 
-                    symbols[selectedNumberOne] = Minus.OperationMinus(symbols[selectedNumberOne], symbols[selectedNumberTwo]);
+                    symbols[selectedNumberOne] = new Minus(symbols[selectedNumberOne], symbols[selectedNumberTwo]).Calculate().ToString();
                     symbols.RemoveAt((selectedNumberTwo) - 1);
                     symbols.RemoveAt((selectedNumberTwo) - 1);
                 }
